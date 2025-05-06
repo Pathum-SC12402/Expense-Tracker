@@ -22,3 +22,10 @@ jobs:
       - name: Copy full repository to server (excluding node_modules)
         run: |
           rsync -avz --exclude 'node_modules' --exclude '.git' -e "ssh -p 22" ./ root@65.0.53.179:/www/wwwroot/react_app/
+
+      - name: SSH and install dependencies
+        run: |
+          ssh -p 22 root@65.0.53.179 << 'EOF'
+            cd /www/wwwroot/react_app
+            npm install --omit=dev
+          EOF
