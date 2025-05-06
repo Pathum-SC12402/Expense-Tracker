@@ -26,6 +26,10 @@ jobs:
       - name: SSH and install dependencies
         run: |
           ssh -p 22 root@65.0.53.179 << 'EOF'
+            if ! command -v npm &> /dev/null; then
+              curl -fsSL https://deb.nodesource.com/setup_20.x | bash -
+              apt-get install -y nodejs
+            fi
             cd /www/wwwroot/react_app
             npm install --omit=dev
           EOF
