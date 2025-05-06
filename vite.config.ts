@@ -20,8 +20,9 @@ export default defineConfig({
   },
   server: {
     hmr: {
-      host: 'pdtracker.run.place'
+      host: 'pdtracker.run.place', // Use your actual domain
+      port: 4000, // Use the port your Vite server is running on
+      protocol: 'ws', // Or 'wss' if you are using HTTPS
     },
-    port: 4000
   },
 })
