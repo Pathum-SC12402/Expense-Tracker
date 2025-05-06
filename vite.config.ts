@@ -21,6 +21,7 @@ export default defineConfig({
   server: {
     hmr: {
       host: 'pdtracker.run.place'
-    }
+    },
+    port: 4000
   },
 })
