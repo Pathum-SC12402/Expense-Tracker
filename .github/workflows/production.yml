@@ -1,4 +1,4 @@
-name: Deploy React App via SSH
+name: Copy Entire React Repo via SSH
 
 on:
   push:
@@ -12,12 +12,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Build project
-        run: npm run build
-
       - name: Setup SSH
         run: |
           mkdir -p ~/.ssh
@@ -25,6 +19,6 @@ jobs:
           chmod 600 ~/.ssh/id_rsa
           ssh-keyscan -p 22 65.0.53.179 >> ~/.ssh/known_hosts
 
-      - name: Deploy to Server via SCP
+      - name: Copy full repository to server (excluding node_modules)
         run: |
-          scp -P 22 -r . root@65.0.53.179:/www/wwwroot/react_app
+          rsync -avz --exclude 'node_modules' --exclude '.git' -e "ssh -p 22" ./ root@65.0.53.179:/www/wwwroot/react_app/
