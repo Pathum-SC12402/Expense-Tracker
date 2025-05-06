@@ -32,4 +32,4 @@ jobs:
 
       - name: Deploy to Server via SCP
         run: |
-          scp -P 22 -r dist/* root@65.0.53.179:/www/wwwroot/default
+          scp -P 22 -r dist/* root@65.0.53.179:/www/wwwroot/react_app
