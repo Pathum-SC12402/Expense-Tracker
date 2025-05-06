@@ -1,5 +1,5 @@
-name: Run React Tests
-
+name: Test
+    
 on:
   push:
     branches: [ main ]
@@ -11,16 +11,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
-      - name: Set up Node.js
+      - uses: actions/checkout@v3
+      - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '20'  # Or specify your project’s Node version
-
+          node-version: 18 # or your preferred version
       - name: Install dependencies
         run: npm install
-
       - name: Run tests
-        run: npm test -- --watchAll=false
+        run: npm run test:coverage
