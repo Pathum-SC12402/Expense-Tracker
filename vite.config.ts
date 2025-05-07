@@ -4,7 +4,6 @@ import { defineConfig } from 'vite'
 import { configDefaults } from 'vitest/config'
 import react from '@vitejs/plugin-react'
 
-// https://vite.dev/config/
 export default defineConfig({
   plugins: [react(), tailwindcss()],
   base: "/Expense-Tracker/",
@@ -20,9 +19,13 @@ export default defineConfig({
   },
   server: {
     hmr: {
-      host: 'pdtracker.run.place', // Use your actual domain
-      port: 4000, // Use the port your Vite server is running on
-      protocol: 'ws', // Or 'wss' if you are using HTTPS
+      host: 'pathumdilshan.run.place',
+      port: 4000,
+      protocol: 'ws',
     },
+  },
+  preview: {
+    port: 4000,
+    host: true,
   },
 })
