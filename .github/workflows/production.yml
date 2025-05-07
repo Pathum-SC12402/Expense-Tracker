@@ -21,8 +21,7 @@ jobs:
 
       - name: Copy full repository to server (excluding node_modules)
         run: |
-          rsync -avz --exclude 'node_modules' --exclude '.git' -e "ssh -p 22" ./ root@65.0.53.179:/www/wwwroot/react_app/
-
+          rsync -avz --exclude '.git' -e "ssh -p 22" ./ root@65.0.53.179:/www/wwwroot/pdtracker.run.place
       - name: SSH and install dependencies
         run: |
           ssh -p 22 root@65.0.53.179 << 'EOF'
@@ -30,6 +29,6 @@ jobs:
               curl -fsSL https://deb.nodesource.com/setup_20.x | bash -
               apt-get install -y nodejs
             fi
-            cd /www/wwwroot/react_app
+            cd /www/wwwroot/pdtracker.run.place
             npm install --omit=dev
           EOF
